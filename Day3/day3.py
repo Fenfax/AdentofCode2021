@@ -53,7 +53,6 @@ def minCommonInArray(inp: [str]):
 
 def part1(inp: [str]):
     work_arr: [[str]] = [[y for y in x] for x in inp]
-    print(getEpsilon(work_arr))
     return int(getGamma(work_arr), 2) * int(getEpsilon(work_arr), 2)
 
 
@@ -64,6 +63,6 @@ def part2(inp: [str]):
 
 dayinp = [x.replace("\n", "") for x in open("input.txt")]
 
-print(part1(dayinp))
+print("Part1: ", part1(dayinp))
 
-print(part2(dayinp))
+print("Part2: ", part2(dayinp))
