@@ -25,7 +25,6 @@ def getCO2Scrubber(inp: [[str]]):
     while len(rem := [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]) > 1:
         out += minCommonInArray(flip2DArray(rem)[cnt])
         cnt += 1
-        # rem = [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]
 
     return ''.join([''.join(x) for x in rem])
 
