@@ -11,24 +11,21 @@ def getEpsilon(inp: [[str]]):
 
 def getO2Rating(inp: [[str]]):
     out = ""
-    rem = [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]
     cnt = 0
-    while len(rem) > 1:
+    while len(rem := [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]) > 1:
         out += mostCommonInArray(flip2DArray(rem)[cnt])
         cnt += 1
-        rem = [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]
 
     return ''.join([''.join(x) for x in rem])
 
 
 def getCO2Scrubber(inp: [[str]]):
     out = ""
-    rem = [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]
     cnt = 0
-    while len(rem) > 1:
+    while len(rem := [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]) > 1:
         out += minCommonInArray(flip2DArray(rem)[cnt])
         cnt += 1
-        rem = [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]
+        # rem = [[z for z in y] for y in [x for x in inp if ''.join(x).startswith(out)]]
 
     return ''.join([''.join(x) for x in rem])
 
