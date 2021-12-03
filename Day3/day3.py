@@ -58,7 +58,7 @@ def part1(inp: [str]):
 
 def part2(inp: [str]):
     work_arr: [[str]] = [[y for y in x] for x in inp]
-    return int(getO2Rating(work_arr),2) * int(getCO2Scrubber(work_arr), 2)
+    return int(getO2Rating(work_arr), 2) * int(getCO2Scrubber(work_arr), 2)
 
 
 dayinp = [x.replace("\n", "") for x in open("input.txt")]
