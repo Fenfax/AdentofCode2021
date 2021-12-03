@@ -7,7 +7,7 @@ def getEpsilon(inp: [[str]]):
 
 
 def flip2DArray(inp: [[str]]):
-    return [list(x) for x in list(zip(*inp[::-1]))]
+    return [list(x) for x in list(zip(*inp))]
 
 
 def mostCommonInArray(inp: [str]):
