@@ -27,8 +27,6 @@ def setDrawn(inp: [[BoardPos]], number: int) -> [[BoardPos]]:
 
 
 def calcScore(winBoard: [[BoardPos]], winNum: int) -> int:
-    print(winNum)
-
     return sum([sum([y.value for y in x if y.drawn is False]) for x in winBoard]) * winNum
 
 
