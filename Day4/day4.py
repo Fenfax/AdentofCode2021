@@ -3,6 +3,9 @@ class BoardPos:
         self.value = value;
         self.drawn = drawn;
 
+    def setDrawn(self, state: bool):
+        self.drawn = state
+
 
 def rotate2dArray(inp: [[BoardPos]]):
     return [list(x) for x in list(zip(*inp))]
@@ -18,12 +21,11 @@ def hasWon(inp: [[BoardPos]]) -> bool:
     return False
 
 
-def setDrawn(inp: [[BoardPos]], number: int) -> [[BoardPos]]:
-    for i, x in enumerate(inp):
-        for i2, y in enumerate(x):
+def setDrawn(inp: [[BoardPos]], number: int):
+    for x in inp:
+        for y in x:
             if y.value == number:
-                inp[i][i2].drawn = True
-    return inp
+                y.setDrawn(True)
 
 
 def calcScore(winBoard: [[BoardPos]], winNum: int) -> int:
@@ -50,27 +52,25 @@ def readInp():
     return drawnumbers, boards
 
 
-def part1(drawnumbers, boards):
+def part1(drawnumbers, boards) -> int:
     for number in drawnumbers:
-        for i, board in enumerate(boards):
-            boards[i] = setDrawn(board, number)
-
         for board in boards:
+            setDrawn(board, number)
             if hasWon(board):
                 return calcScore(board, number)
+    return 0
 
 
-def part2(drawnumbers, boards):
+def part2(drawnumbers, boards) -> int:
     wonBoards: [[[BoardPos]]] = []
     for number in drawnumbers:
-        for i, board in enumerate(boards):
-            boards[i] = setDrawn(board, number)
-
         for board in boards:
+            setDrawn(board, number)
             if hasWon(board) and board not in wonBoards:
                 wonBoards.append(board)
                 if len(wonBoards) == len(boards):
                     return calcScore(board, number)
+    return 0
 
 
 print(part1(*readInp()))
