@@ -1,27 +1,21 @@
 class BoardPos:
     def __init__(self, value: int, drawn: bool):
-        self.value = value;
-        self.drawn = drawn;
+        self.value = value
+        self.drawn = drawn
 
-    def setDrawn(self, state: bool):
+    def setDrawn(self, state: bool) -> None:
         self.drawn = state
 
 
-def rotate2dArray(inp: [[BoardPos]]):
+def rotate2dArray(inp: [[BoardPos]]) -> [[BoardPos]]:
     return [list(x) for x in list(zip(*inp))]
 
 
 def hasWon(inp: [[BoardPos]]) -> bool:
-    for x in inp:
-        if len(x) == len([y for y in x if y.drawn is True]):
-            return True
-    for x in rotate2dArray(inp):
-        if len(x) == len([y for y in x if y.drawn is True]):
-            return True
-    return False
+    return any([all(y.drawn for y in x) for x in inp]) or any([all(y.drawn for y in x) for x in rotate2dArray(inp)])
 
 
-def setDrawn(inp: [[BoardPos]], number: int):
+def setDrawn(inp: [[BoardPos]], number: int) -> None:
     for x in inp:
         for y in x:
             if y.value == number:
@@ -73,5 +67,5 @@ def part2(drawnumbers, boards) -> int:
     return 0
 
 
-print(part1(*readInp()))
-print(part2(*readInp()))
+print("Part1: ", part1(*readInp()))
+print("Part2: ", part2(*readInp()))
