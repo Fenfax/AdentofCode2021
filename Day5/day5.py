@@ -33,7 +33,7 @@ def getInput():
     return [Vents(*(Cord(*map(int, y.split(","))) for y in x.split("->"))) for x in open("input.txt")]
 
 
-def solv(inp: [Vents], doVert: bool) -> int:
+def solv(inp: [Vents], doDiag: bool) -> int:
     ventcount: dict[Cord, int] = {}
     for x in inp:
         if x.getHorizontal():
@@ -46,7 +46,7 @@ def solv(inp: [Vents], doVert: bool) -> int:
                         for vert in range(x.getSmallestVertical(),
                                           x.getSmallestVertical() + x.getVerticalDistance() + 1)]:
                 ventcount[pos] = ventcount.get(pos, 0) + 1
-        elif doVert:
+        elif doDiag:
             for pos in [Cord(
                     x.cordFrom.x + dist if x.cordFrom.x == x.getSmallestHorizonzal() else x.cordFrom.x - dist,
                     x.cordFrom.y + dist if x.cordFrom.y == x.getSmallestVertical() else x.cordFrom.y - dist
