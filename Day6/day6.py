@@ -34,5 +34,5 @@ print("Part1: ", solv(getInput(), 80))
 print("Part2: ", solv(getInput(), 256))
 
 print(solvSlow([int(x) for x in open("input.txt").readline().split(",")], 80))
-# This takes way to long
+# this takes way to long
 # print(solvSlow([int(x) for x in open("input.txt").readline().split(",")], 256))
