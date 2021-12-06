@@ -6,7 +6,7 @@ def getInput():
     return outdict
 
 
-def part1(indict: dict[int, int], repeat: int):
+def solv(indict: dict[int, int], repeat: int):
     tmp_val = 0
     for _ in range(repeat):
         for key in range(0, 9):
@@ -18,5 +18,21 @@ def part1(indict: dict[int, int], repeat: int):
     return sum(indict.values())
 
 
-print("Part1: ", part1(getInput(), 80))
-print("Part2: ", part1(getInput(), 256))
+def solvSlow(inp: [int], repeat: int):
+    for _ in range(repeat):
+        print(_)
+        for i in range(len(inp)):
+            if inp[i] > 0:
+                inp[i] = inp[i] - 1
+            else:
+                inp[i] = 6
+                inp.append(8)
+    return len(inp)
+
+
+print("Part1: ", solv(getInput(), 80))
+print("Part2: ", solv(getInput(), 256))
+
+print(solvSlow([int(x) for x in open("input.txt").readline().split(",")], 80))
+# This takes way to long
+# print(solvSlow([int(x) for x in open("input.txt").readline().split(",")], 256))
