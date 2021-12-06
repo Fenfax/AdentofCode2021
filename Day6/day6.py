@@ -1,5 +1,4 @@
 def getInput():
-
     outdict: dict[int, int] = {}
     for r in open("input.txt"):
         for x in map(int, r.split(",")):
