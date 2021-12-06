@@ -20,7 +20,6 @@ def solv(indict: dict[int, int], repeat: int):
 
 def solvSlow(inp: [int], repeat: int):
     for _ in range(repeat):
-        print(_)
         for i in range(len(inp)):
             if inp[i] > 0:
                 inp[i] = inp[i] - 1
