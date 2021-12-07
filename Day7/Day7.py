@@ -7,7 +7,7 @@ def getInput():
 
 
 def part1(inp: dict[int, int]):
-    return min([sum([abs(num1 - num2) * cnt2 for num2, cnt2 in inp.items()]) for num1, cnt1 in inp.items()])
+    return min([sum([abs(num1 - num2) * cnt for num2, cnt in inp.items()]) for num1 in inp.keys()])
 
 
 def part2(inp: dict[int, int]):
