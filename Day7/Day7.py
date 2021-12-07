@@ -12,7 +12,7 @@ def part1(inp: dict[int, int]):
 
 def part2(inp: dict[int, int]):
     return min(
-        [sum([sum(range(abs(num1 - num2) + 1)) * cnt2 for num2, cnt2 in inp.items()]) for num1 in
+        [sum([sum(range(abs(num1 - num2) + 1)) * cnt for num2, cnt in inp.items()]) for num1 in
          range(1, int((max(inp.keys()) + 1) / 2))])
 
 
