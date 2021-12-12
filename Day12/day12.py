@@ -27,22 +27,19 @@ def getInput():
     return caves
 
 
-def getPath(caves: [Cave], current: Cave, visited: set[Cave], path: [[Cave]], currentPath: [Cave],shouldSecond: bool):
+def getPath(caves: [Cave], current: Cave, visited: set[Cave], path: [[Cave]], currentPath: [Cave], shouldSecond: bool):
     if shouldSecond and current in visited:
         shouldSecond = False
-    fobiddenSecondCave = ["start", "end"]
     if not current.big:
         visited.add(current)
     currentPath.append(current)
     if current.name == "end":
         path.append(currentPath)
-        return path
-    for cave in current.connectedCaves:
-        if not(shouldSecond and cave.name not in fobiddenSecondCave) and cave in visited:
-            continue
-        newPath = currentPath.copy()
-        newVisted = visited.copy()
-        getPath(caves, cave, newVisted, path, newPath, shouldSecond)
+    else:
+        for cave in current.connectedCaves:
+            if not (shouldSecond and cave.name not in ["start", "end"]) and cave in visited:
+                continue
+            getPath(caves, cave, visited.copy(), path, currentPath.copy(), shouldSecond)
 
     return path
 
