@@ -27,36 +27,28 @@ def getInput():
     return caves
 
 
-def getPath(caves: [Cave], current: Cave, visited: [Cave], path: [[Cave]], currentPath: [Cave], secondVisit: [Cave],
-            shouldSecond: bool):
-    if current in secondVisit and not shouldSecond:
-        return path
+def getPath(caves: [Cave], current: Cave, visited: set[Cave], path: [[Cave]], currentPath: [Cave],shouldSecond: bool):
+    if shouldSecond and current in visited:
+        shouldSecond = False
     fobiddenSecondCave = ["start", "end"]
     if not current.big:
-        if shouldSecond and current.name not in fobiddenSecondCave and current not in secondVisit:
-            secondVisit.append(current)
-        else:
-            if current in secondVisit:
-                shouldSecond = False
-            visited.append(current)
+        visited.add(current)
     currentPath.append(current)
     if current.name == "end":
+        path.append(currentPath)
         return path
     for cave in current.connectedCaves:
-        if cave in visited:
+        if not(shouldSecond and cave.name not in fobiddenSecondCave) and cave in visited:
             continue
         newPath = currentPath.copy()
-        path.append(newPath)
         newVisted = visited.copy()
-        newSecondVisit = secondVisit.copy()
-        getPath(caves, cave, newVisted, path, newPath, newSecondVisit, shouldSecond)
+        getPath(caves, cave, newVisted, path, newPath, shouldSecond)
 
     return path
 
 
 def solve(inp: dict[str, Cave], shouldSecond: bool):
-    paths = getPath(inp.values(), inp.get("start"), [], [], [], [], shouldSecond)
-    paths = [x for x in paths if x[len(x) - 1].name == "end"]
+    paths = getPath(inp.values(), inp.get("start"), set(), [], [], shouldSecond)
     return len(paths)
 
 
