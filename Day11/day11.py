@@ -58,7 +58,8 @@ def part1(inp: [[Octups]], steps: int):
 
 def part2(inp: [[Octups]]):
     allFlash = 1
-    while amoutOfFlashes(inp) != 100:
+    cnt = sum([len(x) for x in inp])
+    while amoutOfFlashes(inp) != cnt:
         allFlash += 1
 
     return allFlash
