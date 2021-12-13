@@ -13,11 +13,11 @@ class Fold(NamedTuple):
     pos: int
 
 
-def getInput():
-    cords = set(Cord(*map(int, x.replace("\n", "").split(","))) for x in open("input.txt") if "," in x)
+def getInput(filename: str):
+    cords = set(Cord(*map(int, x.replace("\n", "").split(","))) for x in open(filename) if "," in x)
     folds = [Fold(x.replace("fold along ", "").replace("\n", "").split("=")[0],
                   int(x.replace("fold along ", "").replace("\n", "").split("=")[1])) for x in
-             open("input.txt") if "=" in x]
+             open(filename) if "=" in x]
 
     return cords, folds
 
@@ -68,6 +68,9 @@ def part2(cords, folds):
     printCords(newCords)
 
 
-print("Part1: ", part1(*getInput()))
+print("Part1: ", part1(*getInput("input.txt")))
 print("Part2:")
-part2(*getInput())
+part2(*getInput("input.txt"))
+print("--")
+#https://www.reddit.com/r/adventofcode/comments/rfeuic/2021_day_13_part_25_what_if_it_would_be_more/
+part2(*getInput("inputReddit.txt"))
